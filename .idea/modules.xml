@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/NewQAApp.iml" filepath="$PROJECT_DIR$/NewQAApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/taplytics-1.21.0/taplytics-1.21.0.iml" filepath="$PROJECT_DIR$/taplytics-1.21.0/taplytics-1.21.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/taplytics-1.21.1/taplytics-1.21.1.iml" filepath="$PROJECT_DIR$/taplytics-1.21.1/taplytics-1.21.1.iml" />
+    </modules>
+  </component>
+</project>
