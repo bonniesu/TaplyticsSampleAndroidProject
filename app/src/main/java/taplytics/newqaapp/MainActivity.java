@@ -1,11 +1,12 @@
 package taplytics.newqaapp;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.taplytics.sdk.CodeBlockListener;
 import com.taplytics.sdk.Taplytics;
 import com.taplytics.sdk.TaplyticsVar;
 import com.taplytics.sdk.TaplyticsVarListener;
@@ -13,31 +14,48 @@ import com.taplytics.sdk.TaplyticsVarListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity {
+import static taplytics.newqaapp.R.color.colorAqua;
+
+public class MainActivity extends Activity implements View.OnClickListener {
+
+    private View mViewPagerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TaplyticsVar<String> testVariable = new TaplyticsVar<>("TestVariable", "Default", new TaplyticsVarListener() {
-            @Override
-            public void variableUpdated(Object value) {
-                // Update your interface/functionality with new value.
-                Button left=(Button)findViewById(R.id.button5);
-            }
-        });
+        mViewPagerButton = findViewById(R.id.view_pager_recycler_view_button);
+        mViewPagerButton.setOnClickListener(this);
 
         JSONObject attributes = new JSONObject();
         try {
-            attributes.put("email", "johnDoex22@taplytics.com");
-            attributes.put("name", "John Doe");
-            attributes.put("age", 25);
-            attributes.put("gender", "male");
+            attributes.put("email", "bonnie@taplytics.com");
+            attributes.put("name", "Bonnie Su");
+            attributes.put("age", 23);
+            attributes.put("gender", "female");
         } catch (JSONException e) {
             e.printStackTrace();
         }
         Taplytics.setUserAttributes(attributes);
+
+        TaplyticsVar<String> testVariable = new TaplyticsVar<>("TestVariable", "Default", new TaplyticsVarListener() {
+            @Override
+            public void variableUpdated(Object value) {
+                // Update your interface/functionality with new value.
+                Button bottom=(Button)findViewById(R.id.button2);
+                bottom.setText((CharSequence) value);
+            }
+        });
+
+        Taplytics.runCodeBlock("codeblocktest", new CodeBlockListener() {
+            @Override
+            public void run() {
+                Button right=(Button)findViewById(R.id.button4);
+                right.setText("!!Click Here!!");
+                right.setTextColor(getResources().getColor(colorAqua));
+            }
+        });
     }
 
     public void onSelectLeft(final View view){
@@ -63,5 +81,15 @@ public class MainActivity extends AppCompatActivity {
     public void onSelectBottom(final View view){
         Taplytics.logEvent("Bottom Button Clicked");
         Log.d("Taplytics Event","Taplytics.logEvent(BottomButtonClicked)");
+    }
+
+    @Override
+    public void onClick(final View view) {
+        if (view == mViewPagerButton) {
+            ViewPagerRecyclerViewActivity.startActivity(this);
+        } else {
+            Taplytics.logEvent("CodeEvent");
+            Log.d("Taplytics Event", "Taplytics.logEvent(\"CodeEvent\");");
+        }
     }
 }

@@ -28,9 +28,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="YOUR URL SCHEME" />
+                <data android:scheme="tl-8eb9dae7" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ViewPagerRecyclerViewActivity"
+            android:label="@string/title_activity_testified" />
         <receiver
             android:name="com.taplytics.sdk.TLGcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
@@ -43,7 +46,6 @@
                 <action android:name="taplytics.push.DISMISS" />
             </intent-filter>
         </receiver>
-        <service android:name="com.taplytics.sdk.TLGcmIntentService" />
         <service android:name="com.taplytics.sdk.TLGcmIntentService" />
     </application>
 

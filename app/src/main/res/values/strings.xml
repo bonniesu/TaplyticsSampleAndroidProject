@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">NewQAApp</string>
+    <string name="alpha">Alpha!</string>
+    <string name="beta">Beta!</string>
+    <string name="non_recycler_view">Non Recycler View</string>
+    <string name="view_pager_recycler_view">View Pager w/ recycler view</string>
+    <string name="title_activity_testified">TestifiedActivity</string>
+
+
 </resources>
