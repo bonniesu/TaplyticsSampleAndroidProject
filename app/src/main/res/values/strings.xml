@@ -5,6 +5,7 @@
     <string name="non_recycler_view">Non Recycler View</string>
     <string name="view_pager_recycler_view">View Pager w/ recycler view</string>
     <string name="title_activity_testified">TestifiedActivity</string>
-
+    <string name="fcm_sender_id">124730537539</string>
+    <string name="default_notification_channel_id">default</string>
 
 </resources>

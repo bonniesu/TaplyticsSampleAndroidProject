@@ -83,6 +83,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/view_pager_recycler_view" />
+
+        <Button
+            android:id="@+id/next_activity_button"
+            android:backgroundTint="@color/colorBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="next activity button"
+            android:onClick="onClickActivity"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

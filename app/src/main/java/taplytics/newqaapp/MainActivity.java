@@ -19,6 +19,8 @@ import static taplytics.newqaapp.R.color.colorAqua;
 public class MainActivity extends Activity implements View.OnClickListener {
 
     private View mViewPagerButton;
+    private View mActivityButton;
+//    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         mViewPagerButton = findViewById(R.id.view_pager_recycler_view_button);
         mViewPagerButton.setOnClickListener(this);
+
+        mActivityButton = findViewById(R.id.next_activity_button);
+
+//        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         JSONObject attributes = new JSONObject();
         try {
@@ -43,7 +49,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             @Override
             public void variableUpdated(Object value) {
                 // Update your interface/functionality with new value.
-                Button bottom=(Button)findViewById(R.id.button2);
+                Button bottom = (Button) findViewById(R.id.button2);
                 bottom.setText((CharSequence) value);
             }
         });
@@ -51,36 +57,36 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Taplytics.runCodeBlock("codeblocktest", new CodeBlockListener() {
             @Override
             public void run() {
-                Button right=(Button)findViewById(R.id.button4);
+                Button right = (Button) findViewById(R.id.button4);
                 right.setText("!!Click Here!!");
                 right.setTextColor(getResources().getColor(colorAqua));
             }
         });
     }
 
-    public void onSelectLeft(final View view){
+    public void onSelectLeft(final View view) {
         Taplytics.logEvent("Left Button Clicked");
-        Log.d("Taplytics Event","Taplytics.logEvent(LeftButtonClicked)");
+        Log.d("Taplytics Event", "Taplytics.logEvent(LeftButtonClicked)");
     }
 
-    public void onSelectRight(final View view){
+    public void onSelectRight(final View view) {
         Taplytics.logEvent("Right Button Clicked");
-        Log.d("Taplytics Event","Taplytics.logEvent(RightButtonClicked)");
+        Log.d("Taplytics Event", "Taplytics.logEvent(RightButtonClicked)");
     }
 
-    public void RegressionCampaign(final View view){
+    public void RegressionCampaign(final View view) {
         Taplytics.logEvent("Regression Campaign Started");
-        Log.d("Taplytics Event","Taplytics.logEvent(RegressionCampaignStarted)");
+        Log.d("Taplytics Event", "Taplytics.logEvent(RegressionCampaignStarted)");
     }
 
-    public void onSelectTop(final View view){
+    public void onSelectTop(final View view) {
         Taplytics.logEvent("Top Button Clicked");
-        Log.d("Taplytics Event","Taplytics.logEvent(TopButtonClicked)");
+        Log.d("Taplytics Event", "Taplytics.logEvent(TopButtonClicked)");
     }
 
-    public void onSelectBottom(final View view){
+    public void onSelectBottom(final View view) {
         Taplytics.logEvent("Bottom Button Clicked");
-        Log.d("Taplytics Event","Taplytics.logEvent(BottomButtonClicked)");
+        Log.d("Taplytics Event", "Taplytics.logEvent(BottomButtonClicked)");
     }
 
     @Override
@@ -91,5 +97,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             Taplytics.logEvent("CodeEvent");
             Log.d("Taplytics Event", "Taplytics.logEvent(\"CodeEvent\");");
         }
+    }
+
+    public void onClickActivity(final View view) {
+        SecondActivity.startActivity(this);
     }
 }

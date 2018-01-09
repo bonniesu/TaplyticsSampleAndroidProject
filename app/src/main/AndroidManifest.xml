@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="taplytics.newqaapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,24 +17,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:scheme="tl-8eb9dae7" />
             </intent-filter>
         </activity>
+        <activity android:name=".ViewPagerRecyclerViewActivity">
+        </activity>
+
         <activity
-            android:name=".ViewPagerRecyclerViewActivity"
-            android:label="@string/title_activity_testified" />
+            android:name=".SecondActivity"
+            android:label="SecondActivity"/>
         <receiver
             android:name="com.taplytics.sdk.TLGcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
@@ -47,6 +52,26 @@
             </intent-filter>
         </receiver>
         <service android:name="com.taplytics.sdk.TLGcmIntentService" />
+        <receiver android:name="com.taplytics.sdk.TLBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <service android:name="com.taplytics.sdk.TLGeofenceEventService"/>
+        <!--<service-->
+            <!--android:name=".MyFirebaseMessagingService">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.google.firebase.MESSAGING_EVENT"/>-->
+            <!--</intent-filter>-->
+        <!--</service>-->
+        <!--<service-->
+            <!--android:name=".MyFirebaseInstanceIDService">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>-->
+            <!--</intent-filter>-->
+        <!--</service>-->
+
+
     </application>
 
 </manifest>

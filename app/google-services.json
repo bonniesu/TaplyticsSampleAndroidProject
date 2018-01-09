@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "124730537539",
+    "firebase_url": "https://android-new-qa-app.firebaseio.com",
+    "project_id": "android-new-qa-app",
+    "storage_bucket": "android-new-qa-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124730537539:android:1bcc06d5123d431b",
+        "android_client_info": {
+          "package_name": "taplytics.newqaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124730537539-dkv69gupjnivg2ec9uikadp59hn8llk7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAC35AjRoBzaiJvXlajPUfkcLdSd-3rQA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
