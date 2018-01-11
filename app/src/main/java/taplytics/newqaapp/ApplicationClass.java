@@ -25,7 +25,7 @@ public class ApplicationClass extends Application{
         objectObjectHashMap.put("liveUpdate", true);
         objectObjectHashMap.put("server", "staging");
         Log.d("TAPLYTICS", "Starting Taplytics...");
-        startTaplytics(this, "8892d9c8c8b5dda1170b44bdecd28847b54515d7", objectObjectHashMap);
+        startTaplytics(this, "8892d9c8c8b5dda1170b44bdecd28847b54515d7", objectObjectHashMap, 2000);
 
     }
 }

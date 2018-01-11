@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.taplytics.sdk.CodeBlockListener;
 import com.taplytics.sdk.Taplytics;
 import com.taplytics.sdk.TaplyticsVar;
@@ -14,12 +15,15 @@ import com.taplytics.sdk.TaplyticsVarListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static android.content.ContentValues.TAG;
 import static taplytics.newqaapp.R.color.colorAqua;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
     private View mViewPagerButton;
     private View mActivityButton;
+    public static final String projectToken = "bd4c012bb1f46bde90ed45204ec3e8fa";
+    public static MixpanelAPI mixpanel;
 //    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
@@ -43,6 +47,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         Taplytics.setUserAttributes(attributes);
 
         TaplyticsVar<String> testVariable = new TaplyticsVar<>("TestVariable", "Default", new TaplyticsVarListener() {
@@ -62,16 +67,39 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 right.setTextColor(getResources().getColor(colorAqua));
             }
         });
+
+        mixpanel = MixpanelAPI.getInstance(this, projectToken);
     }
 
     public void onSelectLeft(final View view) {
         Taplytics.logEvent("Left Button Clicked");
         Log.d("Taplytics Event", "Taplytics.logEvent(LeftButtonClicked)");
+        //MixPanel Event
+        try{
+            JSONObject props = new JSONObject();
+            props.put("Event", "Sent");
+            mixpanel.track("MixpanelEventAndroid", props);
+            Log.d(TAG, "onSelectLeft: MixpanelEventAndroid Logged");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onSelectRight(final View view) {
         Taplytics.logEvent("Right Button Clicked");
         Log.d("Taplytics Event", "Taplytics.logEvent(RightButtonClicked)");
+        try{
+            JSONObject props = new JSONObject();
+            props.put("Event", "Sent");
+            props.put("Event2", "Sent2");
+            props.put("Event3", "Sent3");
+            mixpanel.track("AndroidRightButtonClicked", props);
+            Log.d(TAG, "onSelectRight: MixpanelEventAndroid Logged");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void RegressionCampaign(final View view) {
@@ -87,6 +115,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onSelectBottom(final View view) {
         Taplytics.logEvent("Bottom Button Clicked");
         Log.d("Taplytics Event", "Taplytics.logEvent(BottomButtonClicked)");
+
     }
 
     @Override

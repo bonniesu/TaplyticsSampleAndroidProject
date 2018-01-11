@@ -40,12 +40,11 @@
             android:name=".SecondActivity"
             android:label="SecondActivity"/>
         <receiver
-            android:name="com.taplytics.sdk.TLGcmBroadcastReceiver"
+            android:name=".CustomBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="taplytics.push.OPEN" />
                 <action android:name="taplytics.push.DISMISS" />
