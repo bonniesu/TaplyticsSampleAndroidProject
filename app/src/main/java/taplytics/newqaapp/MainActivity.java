@@ -38,17 +38,80 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 //        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        JSONObject attributes = new JSONObject();
+        JSONObject attributes1 = new JSONObject();
         try {
-            attributes.put("email", "bonnie@taplytics.com");
-            attributes.put("name", "Bonnie Su");
-            attributes.put("age", 23);
-            attributes.put("gender", "female");
+            attributes1.put("email", "bonnie+1@taplytics.com");
+            attributes1.put("name", "Bonnie Su+1");
+            attributes1.put("age", 23);
+            attributes1.put("gender", "female");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        Taplytics.setUserAttributes(attributes);
+        JSONObject attributes2 = new JSONObject();
+        try {
+            attributes2.put("email", "bonnie+2@taplytics.com");
+            attributes2.put("name", "Bonnie Su+2");
+            attributes2.put("age", 23);
+            attributes2.put("gender", "female");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+////        Testing Functions!!!
+//
+//        Taplytics.setUserAttributes(attributes1);
+//
+//        Taplytics.getRunningExperimentsAndVariations(new TaplyticsRunningExperimentsListener() {
+//            @Override
+//            public void runningExperimentsAndVariation(Map<String, String> experimentsAndVariations) {
+//                // TODO: Do something with the map.
+//                Log.d(TAG, "runningExperimentsAndVariation: Taplytics Running experiments and variations: $experimentsAndVariations");
+//
+//
+//            }
+//        });
+//
+//        Taplytics.resetAppUser(new TaplyticsResetUserListener() {
+//            @Override
+//            public void finishedResettingUser() {
+//                //Finished User Reset
+//                Log.d(TAG, "finishedResettingUser: Rest User 1");
+//            }
+//        });
+//
+//        Taplytics.startNewSession(new TaplyticsNewSessionListener() {
+//            @Override
+//            public void onNewSession() {
+//
+//                // New session here! Only returns if successful.
+//            }
+//        });
+//
+//        Taplytics.getSessionInfo(new SessionInfoRetrievedListener() {
+//            @Override
+//            public void sessionInfoRetrieved(HashMap sessionInfo) {
+//                //Use your Hashmap of Session Info
+//            }
+//        });
+//
+//        Taplytics.setUserAttributes(attributes2);
+//
+//        Taplytics.getSessionInfo(new SessionInfoRetrievedListener() {
+//            @Override
+//            public void sessionInfoRetrieved(HashMap sessionInfo) {
+//                //Use your Hashmap of Session Info
+//            }
+//        });
+//
+//        Taplytics.getRunningExperimentsAndVariations(new TaplyticsRunningExperimentsListener() {
+//            @Override
+//            public void runningExperimentsAndVariation(Map<String, String> experimentsAndVariations) {
+//                // TODO: Do something with the map.
+//            }
+//        });
+//
+////       End of Testing
 
         TaplyticsVar<String> testVariable = new TaplyticsVar<>("TestVariable", "Default", new TaplyticsVarListener() {
             @Override
