@@ -1,102 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<GridView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/gridview"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:horizontalSpacing="10dp"
-    android:numColumns="2"
-    android:stretchMode="columnWidth"
-    android:verticalSpacing="10dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="taplytics.newqaapp.SecondActivity">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center|start"
-            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/travel_grid_item_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:contentDescription="@null"
-                android:src="@mipmap/musicnote" />
-
-            <ImageView
-                android:id="@+id/travel_grid_item_image2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:contentDescription="@null"
-                android:src="@mipmap/library" />
-
-            <ImageView
-                android:id="@+id/travel_grid_item_image3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:contentDescription="@null"
-                android:src="@mipmap/musicnote" />
-
-            <ImageView
-                android:id="@+id/travel_grid_item_image4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:contentDescription="@null"
-                android:src="@mipmap/library" />
-        </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="384dp"
-        android:layout_height="443dp"
-        android:orientation="vertical"
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="8dp">
-
-            <TextView
-                android:id="@+id/travel_grid_item_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Music Icon"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/travel_grid_item_text2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Library Icon"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/travel_grid_item_text3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Music Icon2"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/travel_grid_item_text4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Library Icon2"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-</GridView>
+        tools:layout_editor_absoluteY="1dp" />
+</android.support.constraint.ConstraintLayout>

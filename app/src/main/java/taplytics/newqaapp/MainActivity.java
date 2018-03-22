@@ -5,15 +5,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.taplytics.sdk.CodeBlockListener;
+import com.taplytics.sdk.SessionInfoRetrievedListener;
 import com.taplytics.sdk.Taplytics;
+import com.taplytics.sdk.TaplyticsNewSessionListener;
+import com.taplytics.sdk.TaplyticsResetUserListener;
+import com.taplytics.sdk.TaplyticsRunningExperimentsListener;
 import com.taplytics.sdk.TaplyticsVar;
 import com.taplytics.sdk.TaplyticsVarListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 import static taplytics.newqaapp.R.color.colorAqua;
@@ -38,87 +46,31 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 //        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        JSONObject attributes1 = new JSONObject();
-        try {
-            attributes1.put("email", "bonnie+1@taplytics.com");
-            attributes1.put("name", "Bonnie Su+1");
-            attributes1.put("age", 23);
-            attributes1.put("gender", "female");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JSONObject attributes2 = new JSONObject();
-        try {
-            attributes2.put("email", "bonnie+2@taplytics.com");
-            attributes2.put("name", "Bonnie Su+2");
-            attributes2.put("age", 23);
-            attributes2.put("gender", "female");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-////        Testing Functions!!!
-//
-//        Taplytics.setUserAttributes(attributes1);
-//
-//        Taplytics.getRunningExperimentsAndVariations(new TaplyticsRunningExperimentsListener() {
-//            @Override
-//            public void runningExperimentsAndVariation(Map<String, String> experimentsAndVariations) {
-//                // TODO: Do something with the map.
-//                Log.d(TAG, "runningExperimentsAndVariation: Taplytics Running experiments and variations: $experimentsAndVariations");
-//
-//
-//            }
-//        });
-//
-//        Taplytics.resetAppUser(new TaplyticsResetUserListener() {
-//            @Override
-//            public void finishedResettingUser() {
-//                //Finished User Reset
-//                Log.d(TAG, "finishedResettingUser: Rest User 1");
-//            }
-//        });
-//
-//        Taplytics.startNewSession(new TaplyticsNewSessionListener() {
-//            @Override
-//            public void onNewSession() {
-//
-//                // New session here! Only returns if successful.
-//            }
-//        });
-//
-//        Taplytics.getSessionInfo(new SessionInfoRetrievedListener() {
-//            @Override
-//            public void sessionInfoRetrieved(HashMap sessionInfo) {
-//                //Use your Hashmap of Session Info
-//            }
-//        });
-//
-//        Taplytics.setUserAttributes(attributes2);
-//
-//        Taplytics.getSessionInfo(new SessionInfoRetrievedListener() {
-//            @Override
-//            public void sessionInfoRetrieved(HashMap sessionInfo) {
-//                //Use your Hashmap of Session Info
-//            }
-//        });
-//
-//        Taplytics.getRunningExperimentsAndVariations(new TaplyticsRunningExperimentsListener() {
-//            @Override
-//            public void runningExperimentsAndVariation(Map<String, String> experimentsAndVariations) {
-//                // TODO: Do something with the map.
-//            }
-//        });
-//
-////       End of Testing
-
         TaplyticsVar<String> testVariable = new TaplyticsVar<>("TestVariable", "Default", new TaplyticsVarListener() {
             @Override
             public void variableUpdated(Object value) {
                 // Update your interface/functionality with new value.
                 Button bottom = (Button) findViewById(R.id.button2);
                 bottom.setText((CharSequence) value);
+            }
+        });
+
+        TaplyticsVar<JSONObject> roomiTest = new TaplyticsVar<>("RoomiTest", new JSONObject(), new TaplyticsVarListener() {
+            @Override
+            public void variableUpdated(Object value) {
+                // Update your interface/functionality with new value.
+                JSONObject json=(JSONObject) value;
+                try {
+                    String bannerText = json.getString("bannerText");
+                    String buttonText = json.getString("buttonText");
+                    TextView Textview1 = (TextView) findViewById(R.id.textView);
+                    TextView Textview2 = (TextView) findViewById(R.id.textView2);
+                    Textview1.setText(bannerText);
+                    Textview2.setText(buttonText);
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -173,13 +125,96 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onSelectTop(final View view) {
         Taplytics.logEvent("Top Button Clicked");
         Log.d("Taplytics Event", "Taplytics.logEvent(TopButtonClicked)");
+        JSONObject attributes1 = new JSONObject();
+        try {
+            attributes1.put("email", "AndroidPushTest23@taplytics.com");
+            attributes1.put("name", "SomeName");
+            attributes1.put("age", 23);
+            attributes1.put("gender", "female");
+            attributes1.put("channels", "someChannel");
+            attributes1.put("weirdCharacters", "⑃😎℅🂺☣︎⎷");
+            attributes1.put("Custom_Attribute", "JustATest");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Taplytics.setUserAttributes(attributes1);
+//        Taplytics.setUserAttributes({
+//                "email": "johnDoe@taplytics.com",
+//                "channels": 1,
+//        });
     }
 
     public void onSelectBottom(final View view) {
         Taplytics.logEvent("Bottom Button Clicked");
         Log.d("Taplytics Event", "Taplytics.logEvent(BottomButtonClicked)");
+        Taplytics.getSessionInfo(new SessionInfoRetrievedListener() {
+            @Override
+            public void sessionInfoRetrieved(HashMap sessionInfo) {
+                Map<String, String> map = new HashMap<String,String>();
+                Log.d(TAG, "sessionInfoRetrieved: Got Session Info");
+            }
+            public void onError(HashMap sessionInfo){
+                Map<String, String> map=new HashMap<String, String>();
+                Log.d(TAG, "onError: Failed to load session info");
+            }
 
+        });
     }
+
+    public void onSelectNewSession(final View view) {
+        Taplytics.startNewSession(new TaplyticsNewSessionListener() {
+            @Override
+            public void onNewSession() {
+                // New session here! Only returns if successful.
+                Log.d(TAG, "New Session Started");
+
+                Taplytics.getSessionInfo(new SessionInfoRetrievedListener() {
+                    @Override
+                    public void sessionInfoRetrieved(HashMap sessionInfo) {
+                        //Use your Hashmap of Session Info
+                        Map<String, String> map = new HashMap<String,String>();
+                        Log.d(TAG, "sessionInfoRetrieved: Got Session Info");
+
+                        Taplytics.getRunningExperimentsAndVariations(new TaplyticsRunningExperimentsListener() {
+                            @Override
+                            public void runningExperimentsAndVariation(Map<String, String> experimentsAndVariations) {
+                                // TODO: Do something with the map.
+                                Log.d(TAG, "runningExperimentsAndVariation: Got Running Experiments and Variations");
+
+                            }
+                        });
+                    }
+                    public void onError(HashMap sessionInfo){
+                        Map<String, String> map=new HashMap<String, String>();
+                        Log.d(TAG, "onError: Failed to load session info");
+                    }
+                });
+            }
+            public void onError() {
+                Log.d(TAG, "onError: Failed to load session info");
+            }
+        });
+    }
+    public void onSelectRightResetUser(final View view) {
+        Taplytics.resetAppUser(new TaplyticsResetUserListener() {
+            @Override
+            public void finishedResettingUser() {
+                //Finished User Reset
+                Log.d(TAG, "finishedResettingUser: Reset User");
+            }
+        });
+    }
+
+    public void onSelectGetExperiments(final View view) {
+        Taplytics.getRunningExperimentsAndVariations(new TaplyticsRunningExperimentsListener() {
+            @Override
+            public void runningExperimentsAndVariation(Map<String, String> experimentsAndVariations) {
+                // TODO: Do something with the map.
+                Log.d(TAG, "runningExperimentsAndVariation: Got Running Experiments and Variations - Own Button");
+            }
+        });
+    }
+
 
     @Override
     public void onClick(final View view) {

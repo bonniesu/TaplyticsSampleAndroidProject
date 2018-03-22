@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="24.0sp" android:textStyle="bold" android:textColor="@android:color/holo_blue_dark" android:id="@id/textView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="8.0dip" android:text="TAPLYTICS" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.95" />
+    <TextView android:textSize="24.0sp" android:id="@id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SECOND Text" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="@id/textView" app:layout_constraintVertical_bias="0.95" />
+    <LinearLayout android:orientation="vertical" android:layout_width="384.0dip" android:layout_height="443.0dip">
+        <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <Button android:id="@id/button5" android:layout_width="192.0dip" android:layout_height="wrap_content" android:text="Left" android:onClick="onSelectLeft" />
+            <Button android:id="@id/button4" android:layout_width="193.0dip" android:layout_height="wrap_content" android:text="Right" android:onClick="onSelectRight" />
+        </LinearLayout>
+        <Button android:id="@id/button3" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Top Button - Set Attribute" android:layout_weight="0.66" android:onClick="onSelectTop" />
+        <Button android:id="@id/button8" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Start Regression Campaign" android:onClick="RegressionCampaign" />
+        <Button android:id="@id/button2" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Bottom Button" android:layout_weight="0.72" android:onClick="onSelectBottom" />
+        <Button android:id="@id/button11" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Get running experiments" android:layout_weight="0.72" android:onClick="onSelectGetExperiments" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <Button android:id="@id/button9" android:layout_width="192.0dip" android:layout_height="wrap_content" android:text="Start new Session" android:onClick="onSelectNewSession" />
+            <Button android:id="@id/button10" android:layout_width="193.0dip" android:layout_height="wrap_content" android:text="Reset App User" android:onClick="onSelectRightResetUser" />
+        </LinearLayout>
+        <Button android:id="@id/view_pager_recycler_view_button" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/view_pager_recycler_view" />
+        <Button android:id="@id/next_activity_button" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="next activity button" android:onClick="onClickActivity" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/taplytics-1.21.1" />
             <option value="$PROJECT_DIR$/taplytics-1.21.2" />
+            <option value="$PROJECT_DIR$/taplytics-1.22.0" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

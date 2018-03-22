@@ -23,9 +23,9 @@ public class ApplicationClass extends Application{
         final HashMap<String, Object> objectObjectHashMap = new HashMap<>();
         objectObjectHashMap.put("debugLogging", true);
         objectObjectHashMap.put("liveUpdate", true);
-        objectObjectHashMap.put("server", "staging");
+//        objectObjectHashMap.put("server", "staging");
         Log.d("TAPLYTICS", "Starting Taplytics...");
         startTaplytics(this, "8892d9c8c8b5dda1170b44bdecd28847b54515d7", objectObjectHashMap, 2000);
-
     }
 }
+

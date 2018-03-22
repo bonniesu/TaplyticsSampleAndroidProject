@@ -1,1 +1,1 @@
-include ':app', ':taplytics-1.21.1', ':taplytics-1.21.2'
+include ':app', ':taplytics-1.21.1', ':taplytics-1.21.2', ':taplytics-1.22.0'
