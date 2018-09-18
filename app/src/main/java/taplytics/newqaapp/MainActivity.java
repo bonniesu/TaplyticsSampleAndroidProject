@@ -44,7 +44,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mViewPagerButton = findViewById(R.id.view_pager_recycler_view_button);
         mViewPagerButton.setOnClickListener(this);
 
-        mActivityButton = findViewById(R.id.next_activity_button);
+//         mActivityButton = findViewById(R.id.next_activity_button);
 
 //        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
@@ -262,5 +262,5 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 //     public void onClickActivity(final View view) {
 //         SecondActivity.startActivity(this);
-    }
+//     }
 }
