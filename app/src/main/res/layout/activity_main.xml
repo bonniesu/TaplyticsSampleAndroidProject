@@ -48,7 +48,7 @@
             <Button
                 android:id="@+id/button5"
                 android:backgroundTint="@color/colorBackground"
-                android:layout_width="192dp"
+                android:layout_width="193dp"
                 android:layout_height="wrap_content"
                 android:text="Left"
                 android:onClick="onSelectLeft" />
@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.72"
-            android:text="Bottom Button"
+            android:text="Get Session info"
             android:onClick="onSelectBottom"/>
         <Button
             android:id="@+id/button11"
@@ -124,13 +124,13 @@
             android:layout_height="wrap_content"
             android:text="@string/view_pager_recycler_view" />
 
-        <Button
-            android:id="@+id/next_activity_button"
-            android:backgroundTint="@color/colorBackground"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="next activity button"
-            android:onClick="onClickActivity"/>
+        <!--<Button-->
+            <!--android:id="@+id/next_activity_button"-->
+            <!--android:backgroundTint="@color/colorBackground"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="next activity button"-->
+            <!--android:onClick="onClickActivity"/>-->
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

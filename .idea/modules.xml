@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidQAApp.iml" filepath="$PROJECT_DIR$/AndroidQAApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/NewQAApp.iml" filepath="$PROJECT_DIR$/NewQAApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/taplytics-1.21.1/taplytics-1.21.1.iml" filepath="$PROJECT_DIR$/taplytics-1.21.1/taplytics-1.21.1.iml" />
       <module fileurl="file://$PROJECT_DIR$/taplytics-1.21.2/taplytics-1.21.2.iml" filepath="$PROJECT_DIR$/taplytics-1.21.2/taplytics-1.21.2.iml" />
       <module fileurl="file://$PROJECT_DIR$/taplytics-1.22.0/taplytics-1.22.0.iml" filepath="$PROJECT_DIR$/taplytics-1.22.0/taplytics-1.22.0.iml" />
     </modules>

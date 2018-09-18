@@ -11,6 +11,7 @@ import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.taplytics.sdk.CodeBlockListener;
 import com.taplytics.sdk.SessionInfoRetrievedListener;
 import com.taplytics.sdk.Taplytics;
+import com.taplytics.sdk.TaplyticsExperimentsLoadedListener;
 import com.taplytics.sdk.TaplyticsNewSessionListener;
 import com.taplytics.sdk.TaplyticsResetUserListener;
 import com.taplytics.sdk.TaplyticsRunningExperimentsListener;
@@ -22,6 +23,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.sql.*;
 
 import static android.content.ContentValues.TAG;
 import static taplytics.newqaapp.R.color.colorAqua;
@@ -30,8 +32,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private View mViewPagerButton;
     private View mActivityButton;
-    public static final String projectToken = "bd4c012bb1f46bde90ed45204ec3e8fa";
-    public static MixpanelAPI mixpanel;
+//    public static final String projectToken = "MIXPANEL_TOKEN";
+//    public static MixpanelAPI mixpanel;
 //    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
@@ -47,6 +49,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         TaplyticsVar<String> testVariable = new TaplyticsVar<>("TestVariable", "Default", new TaplyticsVarListener() {
+            @Override
+            public void variableUpdated(Object value) {
+                // Update your interface/functionality with new value.
+//                Button bottom = (Button) findViewById(R.id.button2);
+//                bottom.setText((CharSequence) value);
+            }
+        });
+
+        TaplyticsVar<String> RolloutTestVar = new TaplyticsVar<>("RolloutTestVar", "RolloutTestVarDefault", new TaplyticsVarListener() {
             @Override
             public void variableUpdated(Object value) {
                 // Update your interface/functionality with new value.
@@ -83,17 +94,26 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
         });
 
-        mixpanel = MixpanelAPI.getInstance(this, projectToken);
+//        mixpanel = MixpanelAPI.getInstance(this, projectToken);
     }
 
     public void onSelectLeft(final View view) {
         Taplytics.logEvent("Left Button Clicked");
+        Time time = new Time(System.currentTimeMillis());
+        JSONObject customInfo = new JSONObject();
+        try {
+            customInfo.put("timeOnView", time);
+        }
+        catch(JSONException e){
+            e.printStackTrace();
+        }
+        Taplytics.logEvent("TimeOnViewTest", 0, customInfo);
         Log.d("Taplytics Event", "Taplytics.logEvent(LeftButtonClicked)");
         //MixPanel Event
         try{
             JSONObject props = new JSONObject();
             props.put("Event", "Sent");
-            mixpanel.track("MixpanelEventAndroid", props);
+//            mixpanel.track("MixpanelEventAndroid", props);
             Log.d(TAG, "onSelectLeft: MixpanelEventAndroid Logged");
 
         } catch (JSONException e) {
@@ -109,7 +129,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             props.put("Event", "Sent");
             props.put("Event2", "Sent2");
             props.put("Event3", "Sent3");
-            mixpanel.track("AndroidRightButtonClicked", props);
+//            mixpanel.track("AndroidRightButtonClicked", props);
             Log.d(TAG, "onSelectRight: MixpanelEventAndroid Logged");
 
         } catch (JSONException e) {
@@ -126,18 +146,31 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Taplytics.logEvent("Top Button Clicked");
         Log.d("Taplytics Event", "Taplytics.logEvent(TopButtonClicked)");
         JSONObject attributes1 = new JSONObject();
+        Taplytics.showMenu();
         try {
-            attributes1.put("email", "AndroidPushTest23@taplytics.com");
-            attributes1.put("name", "SomeName");
-            attributes1.put("age", 23);
-            attributes1.put("gender", "female");
-            attributes1.put("channels", "someChannel");
-            attributes1.put("weirdCharacters", "⑃😎℅🂺☣︎⎷");
+            attributes1.put("email", "tester888@taplytics.com");
+            attributes1.put("user_id", "888");
             attributes1.put("Custom_Attribute", "JustATest");
+            attributes1.put("RollOutTest", true);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Taplytics.setUserAttributes(attributes1);
+
+
+        {
+            Taplytics.setUserAttributes(attributes1);
+            Taplytics.setTaplyticsNewSessionListener(new TaplyticsNewSessionListener() {
+                @Override
+                public void onNewSession() {
+                    //We are in a new session
+                }
+
+                public void onError() {
+                    //We are not in a new session
+                }
+            });
+        }
 //        Taplytics.setUserAttributes({
 //                "email": "johnDoe@taplytics.com",
 //                "channels": 1,
@@ -210,7 +243,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             @Override
             public void runningExperimentsAndVariation(Map<String, String> experimentsAndVariations) {
                 // TODO: Do something with the map.
-                Log.d(TAG, "runningExperimentsAndVariation: Got Running Experiments and Variations - Own Button");
+                Log.d(TAG, "runningExperimentsAndVariation: Got Running Experiments and Variations - Own Button - " + experimentsAndVariations);
+                Taplytics.showMenu();
             }
         });
     }

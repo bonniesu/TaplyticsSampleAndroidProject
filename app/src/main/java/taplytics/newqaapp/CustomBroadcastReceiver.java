@@ -55,12 +55,15 @@ import static android.content.ContentValues.TAG;
         Log.d(TAG, "pushReceived: Extended Broadcast Receiver");
 
         Bundle intentExtras = intent.getExtras();
-        if (intentExtras != null && !intentExtras.isEmpty()) {
-            try {
-                if (intentExtras.containsKey("custom_keys") && (new JSONObject(intentExtras.getString("custom_keys"))).has("Custom_Key1")) {
+//        if (intentExtras != null && !intentExtras.isEmpty()) {
+//            try {
+//                if (intentExtras.containsKey("custom_keys") && (new JSONObject(intentExtras.getString("custom_keys"))).has("Custom_Key1")) {
+                   try{
                     JSONObject custom_data = new JSONObject(intentExtras.getString("custom_keys"));
+                    JSONObject tlID=new JSONObject(intentExtras.getString("tl_id"));
                     Log.d(TAG, "pushReceived: " + custom_data);
-                }
+                    Log.d(TAG, "pushReceived: "+ tlID);
+//                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -72,5 +75,5 @@ import static android.content.ContentValues.TAG;
         within the application!
          */
     }
-}
+//}
 
